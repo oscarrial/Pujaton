@@ -1,4 +1,4 @@
-import { Offer, Prisma, PrismaClient, User } from "@prisma/client";
+import { Bid, Prisma, PrismaClient, User } from "@prisma/client";
 import { HttpException } from "../exceptions/httpException"
 import bcrypt, { compare } from "bcrypt"
 import jwt from "jsonwebtoken"
@@ -10,32 +10,32 @@ import jwt from "jsonwebtoken"
 const prisma = new PrismaClient()
 const TOKEN_PASSWORD = process.env.TOKEN_PASSWORD || 'pass'
 
-export class OfferService {
+export class BidService {
     static async getById(id: number) {
-        const findOffer = await prisma.offer.findUnique({ where: { id } })
-        if (!findOffer) throw new HttpException(404, 'User not found')
-        return findOffer
+        const findBid = await prisma.bid.findUnique({ where: { id } })
+        if (!findBid) throw new HttpException(404, 'User not found')
+        return findBid
     }
 
     static async getAll() {
-        const offerts = await prisma.offer.findMany()
+        const offerts = await prisma.bid.findMany()
         return offerts
     }
-    static async save(offer: Offer) {
-        return await prisma.offer.create({
+    static async save(offer: Bid) {
+        return await prisma.bid.create({
             data: {
-                ...offer
+                ...bid
             }
         })
     }
     static async delete(id: number) {
-        return await prisma.offer.delete( {
+        return await prisma.bid.delete( {
             where: {id}
         }
         )
     }
-    static async update(id:number, change:Offer ) {
-        return await prisma.offer.update( {
+    static async update(id:number, change:Bid ) {
+        return await prisma.bid.update( {
             where:{id},
             data:change
         }

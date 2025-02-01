@@ -1,7 +1,7 @@
 import express, {Response, Request} from 'express'
 import authRouter from './routes/auth.routes'
 import userRouter from './routes/user.routes'
-import offertRouter from './routes/offert.routes'
+import bidRouter from './routes/bid.routes'
 import categoryRouter from './routes/category.routes'
 import rateLimit from 'express-rate-limit'
 import helmet from 'helmet'
@@ -31,7 +31,7 @@ app.use(limiter)
 
 app.use('/api/auth',authRouter)
 app.use('/api/users',userRouter)
-app.use('/api/offerts',offertRouter)
+app.use('/api/bids',bidRouter)
 app.use('/api/categories',categoryRouter)
 
 
